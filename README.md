@@ -48,3 +48,6 @@ Dự án đã có mã native Android trong thư mục `android/`; bộ ghi PCM t
 
 Khi cài APK lần đầu, Android sẽ hỏi quyền microphone. Quyền này là bắt buộc để ghi âm và là quyền nhạy cảm duy nhất của chức năng lõi.
 
+## Phát hành APK qua GitHub
+
+Kho lưu trữ có sẵn workflow `.github/workflows/build-apk.yml`. Khi đẩy thẻ phiên bản bắt đầu bằng `v` (ví dụ `v1.0.0`), GitHub Actions sẽ biên dịch `app:assembleDebug`, đính kèm APK đã ký debug vào GitHub Release và đồng thời lưu APK dưới dạng build artifact. Debug APK cài được trực tiếp trên Galaxy A56 5G sau khi người dùng cho phép cài ứng dụng từ nguồn này. Bản debug không dành để đăng Google Play; cần khóa ký phát hành riêng nếu sau này phát hành công khai.
