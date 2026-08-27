@@ -28,11 +28,11 @@ const schemeFromBundleId = `manus${timestamp}`;
 
 const env = {
   // App branding - update these values directly (do not use env vars)
-  appName: "A56 Silent Recorder",
+  appName: "A56 Ghi Âm",
   appSlug: "a56-silent-recorder",
   // S3 URL of the app logo - set this to the URL returned by generate_image when creating custom logo
   // Leave empty to use the default icon from assets/images/icon.png
-  logoUrl: "",
+  logoUrl: "/manus-storage/a56-silent-recorder-icon_09afc100.png",
   scheme: schemeFromBundleId,
   iosBundleId: bundleId,
   androidPackage: bundleId,
@@ -45,7 +45,7 @@ const config: ExpoConfig = {
   orientation: "portrait",
   icon: "./assets/images/icon.png",
   scheme: env.scheme,
-  userInterfaceStyle: "automatic",
+  userInterfaceStyle: "dark",
   newArchEnabled: true,
   ios: {
     supportsTablet: true,
@@ -64,7 +64,7 @@ const config: ExpoConfig = {
     edgeToEdgeEnabled: true,
     predictiveBackGestureEnabled: false,
     package: env.androidPackage,
-    permissions: ["POST_NOTIFICATIONS"],
+    permissions: ["RECORD_AUDIO"],
     intentFilters: [
       {
         action: "VIEW",
@@ -89,8 +89,19 @@ const config: ExpoConfig = {
     [
       "expo-audio",
       {
-        microphonePermission: "Allow $(PRODUCT_NAME) to access your microphone.",
+        microphonePermission: "Cho phép $(PRODUCT_NAME) sử dụng micrô để ghi âm ngoại tuyến.",
       },
+    ],
+    [
+      "expo-navigation-bar",
+      {
+        "backgroundColor": "#080A0B",
+        "barStyle": "light",
+        "borderColor": "#080A0B",
+        "visibility": "hidden",
+        "behavior": "overlay-swipe",
+        "position": "absolute"
+      }
     ],
     [
       "expo-video",
