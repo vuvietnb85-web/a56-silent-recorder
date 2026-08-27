@@ -26,6 +26,7 @@ export default function HomeScreen() {
   const [libraryVisible, setLibraryVisible] = useState(false);
   const durationStartedAt = useRef<number | null>(null);
   const elapsedBeforeStart = useRef(0);
+  const keepAwakeActive = useRef(false);
 
   useEffect(() => {
     loadWorkspace().then((saved) => {
@@ -49,11 +50,13 @@ export default function HomeScreen() {
 
   useEffect(() => {
     if (phase !== "recording") return;
+    keepAwakeActive.current = true;
     void activateKeepAwake(KEEP_AWAKE_TAG);
   }, [phase]);
 
   useEffect(() => {
-    if (phase === "recording") return;
+    if (phase === "recording" || !keepAwakeActive.current) return;
+    keepAwakeActive.current = false;
     void deactivateKeepAwake(KEEP_AWAKE_TAG);
   }, [phase]);
 
