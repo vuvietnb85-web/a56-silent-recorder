@@ -11,4 +11,4 @@
 - [x] Viết kiểm thử đơn vị cho tính toán dB, phát hiện khoảng lặng và tên tệp.
 - [x] Kiểm tra kiểu, kiểm thử logic và chuẩn bị checkpoint/hướng dẫn người dùng tạo APK qua Publish.
 - [x] Không tạo APK phát hành; chỉ đưa mã nguồn lên GitHub riêng tư.
-- [ ] Dừng workflow tạo APK; chỉ giữ và xác nhận mã nguồn trên GitHub riêng tư.
+- [x] Dừng workflow tạo APK; chỉ giữ và xác nhận mã nguồn trên GitHub riêng tư.
