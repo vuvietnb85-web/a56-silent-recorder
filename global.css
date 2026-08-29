@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* Mobile hardening: full-viewport layout, safe-area support and quiet interactions. */
+:root { color-scheme: dark; }
+html, body, #root { width: 100%; min-width: 320px; min-height: 100%; }
+html { background: #080a0b; }
+body { min-height: 100svh; min-height: 100dvh; overflow-x: hidden; overscroll-behavior: none; }
+#root { min-height: 100svh; min-height: 100dvh; }
+button, [role="button"], a, input, textarea, select { -webkit-tap-highlight-color: transparent; }
+button, [role="button"], a { touch-action: manipulation; }
+img, svg, video, canvas { max-width: 100%; }
+:focus-visible { outline-offset: 3px; }
+@supports (padding: max(0px)) {
+  body { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
+}
+@media (max-width: 480px) {
+  body { font-size: 16px; }
+  button, [role="button"], input, textarea, select { font-size: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}
