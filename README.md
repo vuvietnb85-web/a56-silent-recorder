@@ -1,4 +1,46 @@
-# A56 Ghi Âm
+# A56 Silent Recorder (A56 Ghi Âm) — Offline Android Teleprompter & Voice Recorder with Automatic Silence Removal
+
+**A56 Silent Recorder is an offline Android app that combines a 4-panel script teleprompter with a 48 kHz WAV voice recorder that automatically cuts silences using a hysteresis voice-activity detector (VAD).**
+
+## Features
+
+- Four script panels: paste or type text, lock each panel for reading, auto-shrinking font size, saved locally.
+- Recording controls: start, pause, resume, finish; screen kept awake; full-screen portrait dark UI.
+- Native Android recorder (`AudioRecord`): mono 16-bit PCM at 48 kHz written to uncompressed WAV.
+- Silence removal: 20 ms frames, RMS/dBFS measurement, hysteresis VAD with pre/post padding (defaults −45 dBFS, 300 ms hold, 120 ms padding).
+- Adjustable threshold, hold time and padding; local recordings library; export via Android share/save sheet.
+- 100% offline: no account, no network, no cloud upload, no AI service.
+
+## How to run
+
+Requirements: Node.js 20+, pnpm, Android SDK (for the APK).
+
+```bash
+pnpm install
+pnpm dev     # Expo / Metro development
+pnpm test    # VAD and formatting tests
+```
+
+The native PCM recorder only works in an Android build (`android/` folder), not in the web preview. Targeted at Samsung Galaxy A56 5G; requires microphone permission.
+
+## Tech stack
+
+React Native (Expo, expo-router), TypeScript, NativeWind/Tailwind, Kotlin native module (`SilenceRecorderModule`), AsyncStorage, Vitest.
+
+## FAQ
+
+**What does A56 Silent Recorder do?** It lets you read a script on screen while recording your voice, and automatically removes pauses so the WAV file contains only speech.
+
+**Does it work without internet?** Yes. Recording, silence detection and storage all happen on the phone.
+
+**What audio quality does it record?** Uncompressed mono 16-bit PCM WAV at 48 kHz.
+
+**Will it cut off the start or end of words?** A 300 ms hold time plus 120 ms pre/post padding reduce clipping; all values are adjustable.
+
+**Does it run on other Android phones?** It is designed for the Galaxy A56 5G but uses standard Android `AudioRecord` APIs.
+
+## Tiếng Việt
+
 
 **A56 Ghi Âm** là ứng dụng Android vận hành tại thiết bị, dành cho đọc kịch bản và ghi giọng nói có tự động cắt khoảng lặng. Thiết kế hướng đến Samsung Galaxy A56 5G, hiển thị toàn màn hình dọc với bốn vùng văn bản đọc và một vùng điều khiển ghi âm cố định ở phía dưới. Ứng dụng không yêu cầu tài khoản, mạng, máy chủ, dịch vụ AI hay truyền tệp lên đám mây.
 
@@ -47,3 +89,16 @@ Lệnh `pnpm test && pnpm check` đã hoàn tất thành công. Bộ kiểm th�
 Dự án đã có mã native Android trong thư mục `android/`; bộ ghi PCM thực sự chỉ hoạt động trong APK Android, không hoạt động trong bản xem trước web. Để tạo APK, hãy dùng nút **Publish** ở giao diện dự án sau khi checkpoint xuất hiện. Quá trình này sẽ xây dựng APK phù hợp để cài đặt lên Galaxy A56 5G; không nên tự biên dịch APK trong môi trường xem trước.
 
 Khi cài APK lần đầu, Android sẽ hỏi quyền microphone. Quyền này là bắt buộc để ghi âm và là quyền nhạy cảm duy nhất của chức năng lõi.
+
+Từ khóa: ghi âm cắt khoảng lặng, máy nhắc chữ, teleprompter Android, ghi âm WAV 48 kHz, ghi âm offline.
+
+## Support / Ủng hộ
+
+If this project helps you, you can support the author:
+
+- ☕ Ko-fi: https://ko-fi.com/quocvietvu
+- 💙 PayPal: https://www.paypal.com/donate?business=vuvietnb85%40gmail.com&currency_code=USD
+
+## Author
+
+**Vu Quoc Viet (Vũ Quốc Việt)** — VXO Digital Lab, Vietnam · GitHub [@vuvietnb85-web](https://github.com/vuvietnb85-web)
